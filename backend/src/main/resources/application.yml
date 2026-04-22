@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: admin-demo-backend
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+app:
+  jwt:
+    # NOTE: override via env var APP_JWT_SECRET in real deployments
+    secret: ${APP_JWT_SECRET:change-this-secret-to-a-long-random-value-please-change-me-now}
+    # token lifetime in minutes
+    expire-minutes: 120
+  cors:
+    # Comma-separated list; supports Spring allowedOriginPatterns wildcards.
+    allowed-origins: http://localhost:5173,http://127.0.0.1:5173
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+
+logging:
+  level:
+    com.example.admin: DEBUG
+    org.springframework.security: INFO
