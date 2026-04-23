@@ -42,6 +42,18 @@ const routes: RouteRecordRaw[] = [
         name: 'ContentArticle',
         component: () => import('@/views/content/article/index.vue'),
         meta: { title: '文章管理', icon: 'EditPen' }
+      },
+      {
+        path: 'content/kb-category',
+        name: 'ContentKbCategory',
+        component: () => import('@/views/content/kb/category/index.vue'),
+        meta: { title: '知识分类', icon: 'Folder' }
+      },
+      {
+        path: 'content/kb',
+        name: 'ContentKb',
+        component: () => import('@/views/content/kb/article/index.vue'),
+        meta: { title: '知识库', icon: 'Reading' }
       }
     ]
   },

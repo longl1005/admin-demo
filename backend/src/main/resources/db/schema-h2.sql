@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS sys_user_role;
 DROP TABLE IF EXISTS sys_menu;
 DROP TABLE IF EXISTS sys_role_menu;
 DROP TABLE IF EXISTS article;
+DROP TABLE IF EXISTS kb_category;
+DROP TABLE IF EXISTS kb_article;
 
 CREATE TABLE sys_user (
   id         BIGINT       AUTO_INCREMENT PRIMARY KEY,
@@ -67,4 +69,30 @@ CREATE TABLE article (
   created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   deleted    TINYINT      NOT NULL DEFAULT 0
+);
+
+CREATE TABLE kb_category (
+  id          BIGINT       AUTO_INCREMENT PRIMARY KEY,
+  parent_id   BIGINT       NOT NULL DEFAULT 0,
+  name        VARCHAR(128) NOT NULL,
+  description VARCHAR(255),
+  sort        INT          NOT NULL DEFAULT 0,
+  created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted     TINYINT      NOT NULL DEFAULT 0
+);
+
+CREATE TABLE kb_article (
+  id          BIGINT       AUTO_INCREMENT PRIMARY KEY,
+  category_id BIGINT       NOT NULL DEFAULT 0,
+  title       VARCHAR(255) NOT NULL,
+  summary     VARCHAR(500),
+  content     CLOB,
+  tags        VARCHAR(255),
+  author      VARCHAR(64),
+  views       INT          NOT NULL DEFAULT 0,
+  status      TINYINT      NOT NULL DEFAULT 1,
+  created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted     TINYINT      NOT NULL DEFAULT 0
 );
